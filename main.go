@@ -7,9 +7,18 @@ import (
 )
 
 func generateSHA256Digest(input []byte) string {
+	hash := generateHash(input)
+	return encodeToString(hash)
+}
+
+func generateHash(input []byte) []byte {
 	hash := sha256.New()
 	hash.Write(input)
-	return hex.EncodeToString(hash.Sum(nil))
+	return hash.Sum(nil)
+}
+
+func encodeToString(hash []byte) string {
+	return hex.EncodeToString(hash)
 }
 
 func main() {
